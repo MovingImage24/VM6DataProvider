@@ -22,7 +22,9 @@
   "prefer-stable": true,
   "require": {
     "movingimage/data-provider": "^1.0.0",
-    "movingimage/vm6-api-client": "^0.2.0",
+    "movingimage/vm6-api-client": "^0.1.0"
+  },
+  "require-dev": {
     "phpunit/phpunit": "^4.5 || ^5.0"
   },
   "autoload": {
@@ -32,7 +34,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "MovingImage\\DataProvider\\Tests\\": "lib/DataProvider"
+      "MovingImage\\DataProvider\\Tests\\": "tests/DataProvider"
     }
   }
 }
