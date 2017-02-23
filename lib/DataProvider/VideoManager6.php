@@ -47,9 +47,8 @@ class VideoManager6 implements DataProviderInterface
         $methods = [
             'limit' => 'setLimit',
             'offset' => 'setOffset',
-            'channelId' => 'setChannelId',
+            'channel_id' => 'setChannelId',
             'page' => 'setPage',
-            'channelIds' => 'setChannelIds',
         ];
 
         foreach ($methods as $key => $method)
