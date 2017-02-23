@@ -40,48 +40,7 @@ class VideoManager6Test extends \PHPUnit_Framework_TestCase
         $options = [
             'limit' => $limit,
             'offset' => $offset,
-            'channelId' => $channelId,
-            'page' => $page,
-        ];
-
-        $client
-            ->expects($this->once())
-            ->method('getVideos')
-            ->with($videoQueryCriteria)
-            ->willReturn($expectedReturn);
-
-        $videos = $dataProvider->getData($options);
-
-        $this->assertEquals($expectedReturn, $videos);
-    }
-
-    /**
-     * Testing the data provider, searching for multiple channel IDs.
-     */
-    public function testGetDataWithMultipleChannels()
-    {
-        $client = $this->getMockBuilder(ApiClientInterface::class)->getMock();
-
-        $dataProvider = new VideoManager6($client);
-
-        $limit = 1;
-        $offset = 2;
-        $channelIds = [3, 4, 5, 6];
-        $page = 7;
-
-        $videoQueryCriteria = new VideoQueryCriteria();
-        $videoQueryCriteria
-            ->setChannelIds($channelIds)
-            ->setLimit($limit)
-            ->setOffset($offset)
-            ->setPage($page);
-
-        $expectedReturn = 'expected Return';
-
-        $options = [
-            'limit' => $limit,
-            'offset' => $offset,
-            'channelIds' => $channelIds,
+            'channel_id' => $channelId,
             'page' => $page,
         ];
 
