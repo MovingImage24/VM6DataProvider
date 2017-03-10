@@ -42,6 +42,11 @@ class VideoManager6 implements DataProviderInterface
      */
     private function createVideoQueryCriteria(array $options)
     {
+        // remove empty channel_ids, so it doesn't overwrite single channel_id
+        if (isset($options['channel_ids']) && empty($options['channel_ids'])) {
+            unset($options['channel_ids']);
+        }
+
         $criteria = new VideoQueryCriteria();
 
         $methods = [
