@@ -37,6 +37,14 @@ class VideoManager6 implements DataProviderInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getCount(array $options)
+    {
+        return $this->apiClient->getVideoCount($this->createVideoQueryCriteria($options));
+    }
+
+    /**
      * @param array $options
      * @return VideoQueryCriteria
      */
@@ -59,10 +67,8 @@ class VideoManager6 implements DataProviderInterface
             'order' => 'setSortByColumnOrder'
         ];
 
-        foreach ($methods as $key => $method)
-        {
-            if (isset($options[$key]))
-            {
+        foreach ($methods as $key => $method) {
+            if (isset($options[$key])) {
                 $criteria->$method($options[$key]);
             }
         }
