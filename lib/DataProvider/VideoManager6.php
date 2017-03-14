@@ -58,13 +58,14 @@ class VideoManager6 implements DataProviderInterface
         $criteria = new VideoQueryCriteria();
 
         $methods = [
-            'limit' => 'setLimit',
-            'offset' => 'setOffset',
-            'channel_id' => 'setChannelId',
+            'limit'       => 'setLimit',
+            'offset'      => 'setOffset',
+            'channel_id'  => 'setChannelId',
             'channel_ids' => 'setChannelIds',
-            'page' => 'setPage',
-            'order_by' => 'setSortColumn',
-            'order' => 'setSortByColumnOrder'
+            'page'        => 'setPage',
+            'order_by'    => 'setSortColumn',
+            'order'       => 'setSortByColumnOrder',
+            'search_term' => 'setSearchTerm',
         ];
 
         foreach ($methods as $key => $method) {
