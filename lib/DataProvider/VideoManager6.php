@@ -66,7 +66,8 @@ class VideoManager6 implements DataProviderInterface
             'order_by'             => 'setSortColumn',
             'order'                => 'setSortByColumnOrder',
             'search_term'          => 'setSearchTerm',
-            'include_sub_channels' => 'setIncludeSubChannels'
+            'include_sub_channels' => 'setIncludeSubChannels',
+            'publication_state'    => 'setPublicationState',
         ];
 
         foreach ($methods as $key => $method) {
