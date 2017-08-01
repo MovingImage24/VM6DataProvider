@@ -5,6 +5,7 @@ namespace MovingImage\DataProvider;
 use MovingImage\Client\VM6\Criteria\VideoQueryCriteria;
 use MovingImage\Client\VM6\Interfaces\ApiClientInterface;
 use MovingImage\DataProvider\Interfaces\DataProviderInterface;
+use MovingImage\DataProvider\Wrapper\Video as VideoWrapper;
 
 /**
  * Class VideoManager6
@@ -34,6 +35,42 @@ class VideoManager6 implements DataProviderInterface
     public function getData(array $options)
     {
         return $this->apiClient->getVideos($this->createVideoQueryCriteria($options));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAll(array $options)
+    {
+        return $this->apiClient->getVideos($this->createVideoQueryCriteria($options));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getOne(array $options)
+    {
+        if (!isset($options['id'])) {
+            // Simply fetch the first video from the collection, but without
+            // loading all videos inside the collection
+            $options['limit'] = 1;
+
+            $videos = $this->getAll($options);
+
+            if (count($videos) === 0) {
+                return null;
+            }
+
+            $video = $videos[0];
+        } else {
+            $video = $this->apiClient->getVideo($options['id']);
+        }
+
+        $embedCode = $this->apiClient->getEmbedCode(
+            $video,
+            $options['player_id']);
+
+        return new VideoWrapper($video, $embedCode);
     }
 
     /**
